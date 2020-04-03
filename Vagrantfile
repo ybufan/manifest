@@ -88,8 +88,10 @@ Vagrant.configure("2") do |config|
       config.vm.provision "puppet install", type: "shell", inline: <<-SHELL
     dnf -y install https://yum.puppetlabs.com/puppet-release-el-8.noarch.rpm
     yum -y install puppet
+	yum -y install pdk
 	  /opt/puppetlabs/bin/puppet module install puppet-archive
   SHELL
+    
   config.vm.provision "puppet install pkgs", type: "puppet" do |puppet|
       puppet.manifests_path = "manifests"
       puppet.manifest_file = "install_packages1.pp"
